@@ -1,26 +1,28 @@
 import {useState, useEffect} from "react";
-import {Navbar, Container} from "react-bootstrap";
-
+import {Navbar, Container, Nav} from "react-bootstrap";
 import logo from '../assets/img/logo.svg';
 import navIcon1 from '../assets/img/nav-icon1.svg';
 import navIcon2 from '../assets/img/nav-icon2.svg';
 import navIcon3 from '../assets/img/nav-icon3.svg';
 
 
-
 export const NavBar = () =>
+
 {
     const [activeLink, setActiveLink] = useState('home');
     const [scrolled, setScrolled] = useState (false);
 
-//..It would be trigger once the scroll starts..
+//..It would be trigger once the scroll starts witrh the mouse, Y position
+// Fire on Mount
+//add.EventListener will trigger only on scroll with function scroll as the argument
+//removeEventListener = basically removing it when it gets remove from the DOM (same event).
 useEffect(() => {
   const onScroll = () => {
     if(window.scrollY > 50)
     {
       setScrolled(true);
     }
-    else {
+    else{
 
       setScrolled(false);
     }
@@ -36,10 +38,13 @@ const onUpdateActiveLink = (value) => {
   setActiveLink(value);
 }
 
+
+// Removed the bg="light" from the button
   return (
     <Navbar expand="lg" className={scrolled ? "scrolled": ""}>
       <Container>
         <Navbar.Brand href="#home">
+
         <img src={logo} alt="Logo"/>
 
         </Navbar.Brand>
